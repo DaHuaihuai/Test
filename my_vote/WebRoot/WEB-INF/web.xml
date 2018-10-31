@@ -25,6 +25,11 @@
     <servlet-name>NewvoteServlet</servlet-name>
     <servlet-class>servlet.NewvoteServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>NewoptionServlet</servlet-name>
+    <servlet-class>servlet.NewoptionServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -54,6 +59,10 @@
   <servlet-mapping>
     <servlet-name>NewvoteServlet</servlet-name>
     <url-pattern>/NewvoteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewoptionServlet</servlet-name>
+    <url-pattern>/NewoptionServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

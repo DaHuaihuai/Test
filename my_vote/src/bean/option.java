@@ -1,7 +1,7 @@
 package bean;
 
+public class Option {
 
-public class option {
 	/*
 	 * CREATE TABLE `my_vote`.`vote_option` (
 	  `oid` INT NOT NULL AUTO_INCREMENT,
@@ -18,8 +18,8 @@ public class option {
 	 */
 	private int oid;//该表主键
 	private int vid;//外键，引用vote表中主键
-	private String vname;//选项名称
-	private int vnumber;//对应选项票数
+	private String oname;//选项名称
+	private int onumber;//对应选项票数
 	
 	public int getOid() {
 		return oid;
@@ -33,21 +33,21 @@ public class option {
 	public void setVid(int vid) {
 		this.vid = vid;
 	}
-	public String getVname() {
-		return vname;
+	public String getOname() {
+		return oname;
 	}
-	public void setVname(String vname) {
-		this.vname = vname;
+	public void setOname(String oname) {
+		this.oname = oname;
 	}
-	public int getVnumber() {
-		return vnumber;
+	public int getOnumber() {
+		return onumber;
 	}
-	public void setVnumber(int vnumber) {
-		this.vnumber = vnumber;
+	public void setOnumber(int onumber) {
+		this.onumber = onumber;
 	}
 	@Override
 	public String toString() {
-		return "option [oid=" + oid + ", vid=" + vid + ", vname=" + vname + ", vnumber=" + vnumber + "]";
+		return "Option [oid=" + oid + ", vid=" + vid + ", oname=" + oname + ", onumber=" + onumber + "]";
 	}
-
+	
 }
