@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -30,43 +32,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    <tr>
 			    	<th>主题</th>
 			    	<th>发起者</th>
-			    	<th> </th>
+			    	<th>截止日期</th>
+			    	<th></th>
 			    </tr>
 		    </thead>
 		    <tbody>
-			    <tr>
-			    	<td>谁最傻</td>
-			    	<td>凯凯</td>
-			    	<td><a>查看详情</a></td>
-			    </tr>
-			    <tr>
-			    	<td>谁最傻</td>
-			    	<td>凯凯</td>
-			    	<td><a>查看详情</a></td>
-			    </tr>
-			    <tr>
-			    	<td>谁最傻</td>
-			    	<td>凯凯</td>
-			    	<td><a>查看详情</a></td>
-			    </tr>
-			    <tr>
-			    	<td>谁最傻</td>
-			    	<td>凯凯</td>
-			    	<td><a>查看详情</a></td>
-			    </tr>
-			    <tr>
-			    	<td>谁最傻</td>
-			    	<td>凯凯</td>
-			    	<td><a>查看详情</a></td>
-			    </tr>
-			    <tr>
-			    	<td>谁最傻</td>
-			    	<td>凯凯</td>
-			    	<td><a>查看详情</a></td>
-			    </tr>
-			    
+		    <!-- 该循环将map从list中取出放入变量queryMap中 -->
+		    <c:forEach items="${requestScope.queryList}" var="vote">
+		    	<tr>			  
+		    	<!-- 从map中获取属性值 --> 		
+			    	<td>${vote.vname}</td>
+			    	<td>${vote.username}</td>
+			    	<td>${vote.deadline}</td>
+			    	<td><a href="JoinServlet?vid=${vote.vid }&deadline=${vote.deadline}">参与投票</a>
+			    		<a>查看详情</a></td>
+		    	</tr>
+		    </c:forEach>
+		    
 		    </tbody>
 	    </table>
+	    
     </div>
   </body>
 </html>

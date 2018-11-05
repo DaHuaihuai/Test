@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		var ue=document.getElementById('email');
         		var re=document.getElementById('regist');
         		re.onclick=function(){
-        			if(u.value==""||uname.value==""||psw.value==""||up.value==""||ue.value==""){
+        			if(uname.value==""||psw.value==""||up.value==""||ue.value==""){
         				alert("请完善信息！");
                         return false;
         			}

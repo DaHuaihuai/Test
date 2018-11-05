@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   		<div class="col-sm-offset-3">
             <h1 class="col-sm-offset-3">在线投票网站</h1>
-            <form class="form-horizontal" action="searchvote.jsp" method="get">
+            <form class="form-horizontal" action="SearchServlet" method="get">
                 <div class="form-group">
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="search" id="search" placeholder="请输入关键字">
@@ -47,6 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </form>
             <a href="JSP/register.jsp" >注册</a>
             <a href="JSP/login.jsp" >登录</a>
+            <a href="JSP/list.jsp" >查看投票</a>
+            <a href="MyvoteServlet" >我的投票</a>
            	<a href="JSP/addvote.jsp" >发起投票</a>
         </div>
         <br>
