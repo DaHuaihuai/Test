@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    		</c:otherwise>
 			    	</c:choose>
 			    	<td>${vote.deadline}</td>
-			    	<td><a>查看选项详情</a></td>
+			    	<td><a href="ChartServlet?vid=${vote.vid}">查看选项详情</a></td>
 		    	</tr>
 		    </c:forEach>
 		    

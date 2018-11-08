@@ -76,12 +76,10 @@ public class VoteDao {
 		
 		page.setPc(pc);
 		page.setPs(ps);
-		String sql = "select count(*) from vote";
-		
-		Number tatol = (Number)qRunner.query(sql, new ScalarHandler<Object>());
-		int tr = tatol.intValue();
+
+		int tr = voteNumber();
 		page.setTr(tr);
-		sql = "select vid,vote.uid,vname,username,deadline from vote left join user on vote.uid=user.uid order by vid desc limit ?,?";
+		String sql = "select vid,vote.uid,vname,username,deadline from vote left join user on vote.uid=user.uid order by vid desc limit ?,?";
 
 		Object[] params = {(pc-1)*ps,ps};
 		List<Map<String, Object>> list = qRunner.query(sql, new MapListHandler() , params);
@@ -89,6 +87,15 @@ public class VoteDao {
 		
 		return page ;
 
+	}
+	
+	//得到vote表总记录数
+	private int voteNumber() throws SQLException{
+		String sql = "select count(*) from vote";
+		
+		Number tatol = (Number)qRunner.query(sql, new ScalarHandler<Object>());
+		int tr = tatol.intValue();
+		return tr;
 	}
 
 	//查询我的投票
@@ -119,6 +126,7 @@ public class VoteDao {
 		return vtype;
 	}
 
+	//更新投票数量
 	public void updateOption(int oid) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "update vote_option set onumber=onumber+1 where oid=?";
@@ -126,9 +134,47 @@ public class VoteDao {
 		qRunner.update(sql, oid);
 	}
 
+	//用户投票后插入记录（防止重复投票）
 	public void changeVoted(int uid, int vid) throws SQLException {
 		String sql = "insert into user_vote value(?,?)";
-		qRunner.update(sql, vid,uid);
+		qRunner.update(sql, vid,uid);	
+	}
+	
+	//举报投票
+	public void reportVote(int vid) throws SQLException{
+		String sql = "update vote set vreport=1 where vid=?";
+		qRunner.update(sql, vid);
+	}
+
+	//管理员对数据的处理
+	public Page<Map<String, Object>> adminSearch(int pc, int ps) throws SQLException {
+		Page<Map<String, Object>> page = new Page<Map<String, Object>>();
+
+		
+		page.setPc(pc);
+		page.setPs(ps);
+
+		int tr = voteNumber();
+		page.setTr(tr);
+		String sql = "select vote.vid,vname,deadline,onumber,vtype,vreport,username from (vote left join user on vote.uid=user.uid) left join vote_option on vote.vid=vote_option.vid group by vid limit ?,?";
+
+		Object[] params = {(pc-1)*ps,ps};
+		List<Map<String, Object>> list = qRunner.query(sql, new MapListHandler() , params);
+		page.setBeanList(list);
+		
+		return page ;
+	}
+
+	//管理员撤销举报
+	public void removeReport(int vid) throws SQLException {
+		String sql = "update vote set vreport=0 where vid=?";
+		qRunner.update(sql, vid);
+		
+	}
+
+	public void deleteVote(int vid) throws SQLException {
+		String sql = "delete from vote where vid=?";
+		qRunner.update(sql, vid);
 		
 	}
 }

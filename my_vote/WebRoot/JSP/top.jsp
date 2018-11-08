@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </form>
             <a href="JSP/register.jsp" >注册</a>
             <a href="JSP/login.jsp" >登录</a>
-            <a href="JSP/list.jsp" >查看投票</a>
+            <a href="ListServlet" >查看投票</a>
             <a href="MyvoteServlet" >我的投票</a>
            	<a href="JSP/addvote.jsp" >发起投票</a>
             <br>

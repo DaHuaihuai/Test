@@ -122,4 +122,44 @@ public class VoteService {
 		}
 		
 	}
+	
+	public void reportVote(int vid){
+		try {
+			voteDao.reportVote(vid);
+		} catch (SQLException e) {
+			throw new RuntimeException();
+		}
+	}
+
+	public Page<Map<String, Object>> adminSearch(int pc, int ps) {
+		Page<Map<String, Object>> page = null;
+		try {
+			page = voteDao.adminSearch(pc,ps);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return page;
+	}
+
+	public void removeReport(int vid) {
+		try {
+			voteDao.removeReport(vid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void deleteVote(int vid) {
+		try {
+			voteDao.deleteVote(vid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

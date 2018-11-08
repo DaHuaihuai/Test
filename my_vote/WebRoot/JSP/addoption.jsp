@@ -25,25 +25,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <div class="container">
-      <form class="form-horizontal" action="NewoptionServlet" method="post">
-      <!-- 将相关投票的vid一起传递 -->
-      <input type="hidden" name="vid" value="${vid }">
-      <input type="hidden" name="options" value="${options }">
-		  <c:forEach begin="1" end="${options}" varStatus="id">
-		   <div class="form-group">
-			  <label for="vote_option" class="col-sm-2 control-label">选项${id.count}</label>
-		             <div class="col-sm-8">
-		                 <input type="text" class="form-control" name="option${id.count}" id="option" >
-		             </div>
-           </div>	
-		  </c:forEach>
-		  <div class="form-group">
-                    <div class="col-sm-offset-10 col-sm-10">
-                        <button type="submit" class="btn btn btn-info" >完成</button>
-                    </div>
-                </div>
-	  </form>
-  </div>
+	  <div class="container">
+	      <form class="form-horizontal" action="NewoptionServlet" method="post">
+	      <!-- 将相关投票的vid一起传递 -->
+	      <input type="hidden" name="vid" value="${vid }">
+	      <input type="hidden" name="options" value="${options }" />
+			  <c:forEach begin="1" end="${options}" varStatus="id">
+			   <div class="form-group">
+				  <label for="vote_option" class="col-sm-2 control-label">选项${id.count}</label>
+			             <div class="col-sm-8">
+			                 <input type="text" class="form-control" name="option${id.count}" id="option" >
+			             </div>
+	           </div>	
+			  </c:forEach>
+			  <div class="form-group">
+	                    <div class="col-sm-offset-10 col-sm-10">
+	                        <button type="submit" class="btn btn btn-info" >完成</button>
+	                    </div>
+	                </div>
+		  </form>
+	  </div>
   </body>
 </html>
